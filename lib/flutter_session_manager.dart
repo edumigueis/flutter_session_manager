@@ -15,6 +15,29 @@ class FlutterSessionManager {
     prefs = await SharedPreferences.getInstance();
   }
 
+  /// Item getter
+  ///
+  /// @param key String that specifies JSON key to access the corresponding value
+  /// @returns Future
+  Future get(key) async {
+    await _accessSharedPrefs();
+    try {
+      return json.decode(prefs!.get(key) as String);
+    } catch (e) {
+      return prefs!.get(key);
+    }
+  }
+
+  Future destroy() async {
+    await _accessSharedPrefs();
+    try {
+      await prefs!.clear();
+    } catch (e) {
+      throw Exception(
+          "It wasn't possible to destroy the session. This can be triggered if the session no longer exists or if the session is inaccessible. ");
+    }
+  }
+
   /// Item setter
   ///
   /// @param key String
