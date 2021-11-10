@@ -55,14 +55,14 @@ class FlutterSessionManager {
           }
           break;
 
-        // Integer
+        // Int
         case int:
           {
             prefs!.setInt(key, value);
           }
           break;
 
-        // Boolean
+        // Bool
         case bool:
           {
             prefs!.setBool(key, value);
@@ -83,7 +83,7 @@ class FlutterSessionManager {
           }
           break;
 
-        // Object
+        // Object ()
         default:
           {
             prefs!.setString(key, jsonEncode(value.toJson()));
@@ -93,7 +93,7 @@ class FlutterSessionManager {
       throw Exception("Key or value are not the correct type.");
     }
 
-    // Add item to session wrapper
+    // Add data to session wrapper
     _session.putIfAbsent(key, () => value);
   }
 }
