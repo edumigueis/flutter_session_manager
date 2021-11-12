@@ -72,9 +72,20 @@ await SessionManager().containsKey("id"); // true or false
 
 ## Getting Started
 
-  
+With Flutter, run:
+```sh
+ $ flutter pub add flutter_session_manager
+```
 
-To get a local copy up and running follow these simple steps.
+This will add a line like this to your package's pubspec.yaml (and run an implicit flutter pub get):
+```sh
+ dependencies:
+  flutter_session_manager: ^1.0.1
+```
+
+To import it in your Dart code, you can use:
+
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 
 <!-- CONTRIBUTING -->
