@@ -77,7 +77,7 @@ class SessionManager {
     try {
       await prefs!.reload();
     } catch (e) {
-      throw Exception("It wasn't possible to restart the session.");
+      throw Exception("It wasn't possible to reload and update the session.");
     }
   }
 
