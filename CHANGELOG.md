@@ -1,3 +1,5 @@
-## 0.0.1
+## 1.0.1
 
-* TODO: Describe initial release.
+### Added
+ - All basic operations related to session management and session storage;
+ - All project documentation;
