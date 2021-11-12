@@ -69,10 +69,10 @@ class SessionManager {
     }
   }
 
-  /// Session updater(reloads session fetching latest data)
+  /// Session updater(reloads session fetching the latest data)
   ///
   /// @returns Future
-  Future updateSession() async {
+  Future update() async {
     await _accessSharedPrefs();
     try {
       await prefs!.reload();

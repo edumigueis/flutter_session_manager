@@ -52,7 +52,7 @@ This package contains all operations that may be necessary to manage a session.
 
 - Update session
 ```sh
-await SessionManager().updateSession();
+await SessionManager().update();
 ```
 
 - Delete session and all data in it
