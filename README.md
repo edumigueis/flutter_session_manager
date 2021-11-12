@@ -16,7 +16,12 @@ await sessionManager.set("isLoggedIn", true);
 await sessionManager.set("user", new User(id: 1, name: "John", isCool: true, postCount: 4));
 ```
 
-To save objects like in the last example, the class must have the toJson() method. When getting a object, it returns as a Json that you can Serialize using fromJson() method.
+### Read values from the session:
+```sh
+dynamic id = await SessionManager().get("id");
+```
+### Saving objects:
+To save objects, the class must have the toJson() method. When getting a object, it returns as a Json that you can Serialize using fromJson() method.
 
 ``` 
 class User {
@@ -25,7 +30,7 @@ class User {
   final bool isCool;
   final int postCount;
 
-  User({this.data, this.id, this.isCool, this.postCount});
+  User({this.id, this.name, this.isCool, this.postCount});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> user = Map<String, dynamic>();
@@ -40,9 +45,4 @@ class User {
 User user = User(id: 1, name: "John", isCool: true, postCount: 4);
 await SessionManager().set('user', user);
 User u = User.fromJson(await SessionManager().get("user"));
-```
-
-### Read values from the session:
-```sh
-dynamic id = await SessionManager().get("id");
 ```
