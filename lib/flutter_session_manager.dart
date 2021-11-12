@@ -3,7 +3,7 @@ library flutter_session_manager;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class FlutterSessionManager {
+class SessionManager {
   /// Initialize session wrapper
   final Map _session = {};
 

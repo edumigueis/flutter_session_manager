@@ -1,39 +1,48 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_session_manager
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+> Adds an easy to use wrapper to session management in flutter. Allows for easy session storage and management. The session persists in the app's' lifetime.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+### Store values in the session:
+```sh
+await SessionManager().set("key", value);
+```
+or
+```sh
+var sessionManager = SessionManager();
+await sessionManager.set("name", "cool user");
+await sessionManager.set("id", 3);
+await sessionManager.set("measure", 23.2);
+await sessionManager.set("isLoggedIn", true);
+await sessionManager.set("user", new User(id: 1, name: "John", isCool: true, postCount: 4));
 ```
 
-## Additional information
+To save objects like in the last example, the class must have the toJson() method. When getting a object, it returns as a Json that you can Serialize using fromJson() method.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+``` 
+class User {
+  final int id;
+  final String name;
+  final bool isCool;
+  final int postCount;
+
+  User({this.data, this.id, this.isCool, this.postCount});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> user = Map<String, dynamic>();
+    user["id"] = id;
+    user["name"] = this.name;
+    user["isCool"] = this.isCool;
+    user["postCount"] = this.postCount;
+    return user;
+  }
+}
+
+User user = User(id: 1, name: "John", isCool: true, postCount: 4);
+await SessionManager().set('user', user);
+User u = User.fromJson(await SessionManager().get("user"));
+```
+
+### Read values from the session:
+```sh
+dynamic id = await SessionManager().get("id");
+```
