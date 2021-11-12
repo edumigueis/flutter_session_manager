@@ -23,7 +23,7 @@ dynamic id = await SessionManager().get("id");
 ### Saving objects:
 To save objects, the class must have the toJson() method. When getting a object, it returns as a Json that you can Serialize using fromJson() method.
 
-``` 
+```sh
 class User {
   final int id;
   final String name;
@@ -45,4 +45,27 @@ class User {
 User user = User(id: 1, name: "John", isCool: true, postCount: 4);
 await SessionManager().set('user', user);
 User u = User.fromJson(await SessionManager().get("user"));
+```
+
+### Session Management:
+This package contains all operations that may be necessary to manage a session.
+
+- Update session
+```sh
+await SessionManager().updateSession();
+```
+
+- Delete session and all data in it
+```sh
+await SessionManager().destroy();
+```
+
+- Remove a specific item
+```sh
+await SessionManager().remove("id");
+```
+
+- Verify wether or not a key exists
+```sh
+await SessionManager().containsKey("id"); // true or false
 ```
