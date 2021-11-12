@@ -28,6 +28,9 @@ class SessionManager {
     }
   }
 
+  /// Session destroyer
+  ///
+  /// @returns Future
   Future destroy() async {
     await _accessSharedPrefs();
     try {
@@ -35,6 +38,46 @@ class SessionManager {
     } catch (e) {
       throw Exception(
           "It wasn't possible to destroy the session. This can be triggered if the session no longer exists or if the session is inaccessible. ");
+    }
+  }
+
+  /// Session value remover by key
+  ///
+  /// @param key String that specifies JSON key to access the corresponding value
+  /// @returns Future
+  Future remove(String key) async {
+    await _accessSharedPrefs();
+    try {
+      await prefs!.remove(key);
+    } catch (e) {
+      throw Exception(
+          "It wasn't possible to remove this item from the session. This can be triggered if the session no longer exists or if the key is not correct. ");
+    }
+  }
+
+  /// Key existence verifier
+  ///
+  /// @param key String that specifies JSON key to search for
+  /// @returns Future<bool> false if that key wasn't found or true if it was
+  Future<bool> containsKey(String key) async {
+    await _accessSharedPrefs();
+    try {
+      return prefs!.containsKey(key);
+    } catch (e) {
+      throw Exception(
+          "It wasn't possible to look for this key in the session. This can be triggered if the session no longer exists or if the key is not correct. ");
+    }
+  }
+
+  /// Session updater(reloads session fetching latest data)
+  ///
+  /// @returns Future
+  Future updateSession() async {
+    await _accessSharedPrefs();
+    try {
+      await prefs!.reload();
+    } catch (e) {
+      throw Exception("It wasn't possible to restart the session.");
     }
   }
 
