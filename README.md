@@ -30,7 +30,7 @@ class User {
   final bool isCool;
   final int postCount;
 
-  User({this.data, this.id, this.isCool, this.postCount});
+  User({this.id, this.name, this.isCool, this.postCount});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> user = Map<String, dynamic>();
